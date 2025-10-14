@@ -10,6 +10,10 @@ contract Bytes {
         // if z = 4, return bytes 0x00010203
         // ...
         // etc
-
+        bytes memory data = new bytes(z);
+        for (uint8 i = 0; i < z; i++) {
+            data[i] = bytes1(i);
+        }
+        return data;
    }
 }
