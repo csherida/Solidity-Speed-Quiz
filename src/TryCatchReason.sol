@@ -16,7 +16,7 @@ contract TryCatchReason {
         try IRare(a).rare(x) {
             return bytes("");
         } catch Error(string memory reason) {
-            return bytes(reason);
+            return abi.encodeWithSignature("Error(string)", reason);
         } catch (bytes memory lowLevelData) {
             return lowLevelData;
         }
