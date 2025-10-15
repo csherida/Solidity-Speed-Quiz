@@ -8,5 +8,12 @@ contract ConvertToNegative {
         // return -x
         // if -x cannot be computed, revert with "TooBig()"
         // do not hardcode any constants
+        if (x == uint256(type(int256).max) + 1) {
+            return type(int256).min;
+        }
+        if (x > uint256(type(int256).max)) {
+            revert TooBig();
+        }
+        return -int256(x);
     }
 }

@@ -5,5 +5,10 @@ contract StringIndex {
     function main(string memory str, uint256 index) public returns (string memory) {
         // return the character at index in str
         // assume str only consists of ascii characters
+        bytes memory b = bytes(str);
+        require(index < b.length, "Index out of range");
+        bytes memory result = new bytes(1);
+        result[0] = b[index];
+        return string(result);
     } 
 }

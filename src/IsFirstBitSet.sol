@@ -6,5 +6,8 @@ contract IsFirstBitSet {
         // return true if the first bit is set
         // for example 0x000....0001 returns true
         // for example 0x000....0010 returns false
+        uint256 value = uint256(x);
+
+        return (value & 1) != 0;
     }
 }
