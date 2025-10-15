@@ -13,12 +13,12 @@ contract TryCatchReason {
         // if the call reverts, return the reason of the revert
         // you will need to create the interface yourself
 
-				try (IRare(a).rare(x)) {
-					return bytes("");
-				} catch Error(string memory reason) {
-					return bytes(reason);
-				} catch {
-				  return bytes
-
+        try IRare(a).rare(x) {
+            return bytes("");
+        } catch Error(string memory reason) {
+            return bytes(reason);
+        } catch (bytes memory lowLevelData) {
+            return lowLevelData;
+        }
    }
 }
